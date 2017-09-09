@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xluaTest", "xluaTest.csproj", "{44DD7200-B864-9C3E-A2E8-CE0D7834C672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xluaTest.Editor", "xluaTest.Editor.csproj", "{C0170282-5F75-26A3-9851-D4D550660165}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44DD7200-B864-9C3E-A2E8-CE0D7834C672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DD7200-B864-9C3E-A2E8-CE0D7834C672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DD7200-B864-9C3E-A2E8-CE0D7834C672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DD7200-B864-9C3E-A2E8-CE0D7834C672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0170282-5F75-26A3-9851-D4D550660165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0170282-5F75-26A3-9851-D4D550660165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0170282-5F75-26A3-9851-D4D550660165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0170282-5F75-26A3-9851-D4D550660165}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
