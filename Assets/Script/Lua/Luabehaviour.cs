@@ -26,8 +26,8 @@ namespace ET {
             m_luaTab.SetMetaTable(meta);
             meta.Dispose();
             m_luaTab.Set("self", this);
-            LuaEvnBase.GetInstance().luaEnv.DoString(Utility.LoadLuaFile(FilePath), this.name, m_luaTab);
-            //LuaEvnBase.GetInstance().luaEnv.DoString("require 'Assets.Lua.init'", this.name, m_luaTab);
+            //LuaEvnBase.GetInstance().luaEnv.DoString(Utility.LoadLuaFile(FilePath), this.name, m_luaTab);
+            LuaEvnBase.GetInstance().luaEnv.DoString("require 'view/first'", this.name, m_luaTab);
             m_luaTab.Get("start", out m_luaStart);
             m_luaTab.Get("update", out m_luaUpdate);
             m_luaTab.Get("onDestroy", out m_luaOnDestroy);

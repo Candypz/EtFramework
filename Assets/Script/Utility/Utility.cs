@@ -9,6 +9,7 @@ namespace ET {
 
         public static string LoadLuaFile(string fileName) {
             string _filePath;
+            string _resPath;
             _filePath = System.IO.Path.Combine(Application.dataPath + m_luaFilePath, fileName + ".lua");
             FileInfo _info = new FileInfo(_filePath);
             string _data = "";
