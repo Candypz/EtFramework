@@ -3,3 +3,5 @@ Library
 Temp
 *.obj
 *.tlog
+Assets/Resources/Lua
+Assets/Resources/Lua.meta

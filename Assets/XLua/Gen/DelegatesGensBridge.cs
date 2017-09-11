@@ -51,6 +51,11 @@ namespace XLua
 		public override Delegate GetDelegateByType(Type type)
 		{
 		
+		    if (type == typeof(ET.Luabehaviour.LuaAction))
+			{
+			    return new ET.Luabehaviour.LuaAction(__Gen_Delegate_Imp0);
+			}
+		
 		    if (type == typeof(System.Action))
 			{
 			    return new System.Action(__Gen_Delegate_Imp0);

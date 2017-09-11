@@ -5,12 +5,10 @@ using UnityEngine;
 
 namespace ET {
     public static class Utility {
-        private static string m_luaFilePath = "/Lua/";
-
         public static string LoadLuaFile(string fileName) {
             string _filePath;
-            string _resPath;
-            _filePath = System.IO.Path.Combine(Application.dataPath + m_luaFilePath, fileName + ".lua");
+#if UNITY_EDITOR
+            _filePath = System.IO.Path.Combine(Application.dataPath + "/Lua/", fileName + ".lua");
             FileInfo _info = new FileInfo(_filePath);
             string _data = "";
             if (_info.Exists) {
@@ -18,6 +16,11 @@ namespace ET {
                 _data = r.ReadToEnd();
                 return _data;
             }
+#else
+            _filePath = "Lua/" + fileName + ".lua";
+            TextAsset _s = Resources.Load(_filePath) as TextAsset;
+            return _s.text;
+#endif
             return null;
         }
     }

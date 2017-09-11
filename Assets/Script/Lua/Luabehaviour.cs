@@ -7,9 +7,14 @@ using XLua;
 
 namespace ET {
     public class Luabehaviour : MonoBehaviour {
-        private Action m_luaStart;
-        private Action m_luaUpdate;
-        private Action m_luaOnDestroy;
+        [CSharpCallLua]
+        public delegate void LuaAction();
+
+        private LuaAction m_luaStart;
+        private LuaAction m_luaUpdate;
+        private LuaAction m_luaOnDestroy;
+
+        
 
         public string FilePath = "view/first";
 
@@ -26,8 +31,8 @@ namespace ET {
             m_luaTab.SetMetaTable(meta);
             meta.Dispose();
             m_luaTab.Set("self", this);
-            //LuaEvnBase.GetInstance().luaEnv.DoString(Utility.LoadLuaFile(FilePath), this.name, m_luaTab);
-            LuaEvnBase.GetInstance().luaEnv.DoString("require 'view/first'", this.name, m_luaTab);
+            LuaEvnBase.GetInstance().luaEnv.DoString(Utility.LoadLuaFile(FilePath), this.name, m_luaTab);
+            //LuaEvnBase.GetInstance().luaEnv.DoString("require 'view/first'", this.name, m_luaTab);
             m_luaTab.Get("start", out m_luaStart);
             m_luaTab.Get("update", out m_luaUpdate);
             m_luaTab.Get("onDestroy", out m_luaOnDestroy);
