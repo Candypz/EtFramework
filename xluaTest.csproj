@@ -83,11 +83,6 @@
     <Compile Include="Assets\Script\Lua\LuaEvnBase.cs" />
     <Compile Include="Assets\Script\Lua\LuaSetting.cs" />
     <Compile Include="Assets\Script\Utility\Utility.cs" />
-    <Compile Include="Assets\XLua\Gen\DelegatesGensBridge.cs" />
-    <Compile Include="Assets\XLua\Gen\EnumWrap.cs" />
-    <Compile Include="Assets\XLua\Gen\PackUnpack.cs" />
-    <Compile Include="Assets\XLua\Gen\WrapPusher.cs" />
-    <Compile Include="Assets\XLua\Gen\XLuaGenAutoRegister.cs" />
     <Compile Include="Assets\XLua\Src\CodeEmit.cs" />
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Src\DelegateBridge.cs" />
@@ -112,7 +107,6 @@
     <Compile Include="Assets\XLua\Src\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\XLua\Gen\link.xml" />
     <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
     <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
     <None Include="Assets\XLua\Resources\tdr\tdr.lua.txt" />

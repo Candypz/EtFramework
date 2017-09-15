@@ -126,13 +126,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Editor\EtCopyLuaFile.cs" />
     <Compile Include="Assets\XLua\Src\Editor\Generator.cs" />
     <Compile Include="Assets\XLua\Src\Editor\Hotfix.cs" />
     <Compile Include="Assets\XLua\Src\Editor\LinkXmlGen\LinkXmlGen.cs" />
     <Compile Include="Assets\XLua\Src\Editor\TemplateRef.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\XLua\Gen\link.xml" />
     <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
     <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
     <None Include="Assets\XLua\Resources\tdr\tdr.lua.txt" />

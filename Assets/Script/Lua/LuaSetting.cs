@@ -5,13 +5,20 @@ using UnityEngine;
 using XLua;
 
 public static class LuaSetting {
-    [CSharpCallLua]
+    [LuaCallCSharp]
     public static List<Type> luaCallCsList = new List<Type>() {
-            typeof(System.Action),
+            typeof(Action),
+            typeof(object),
             typeof(GameObject),
 
             typeof(ET.UGUIEventListen),
             typeof(ET.Luabehaviour),
     };
+
+    [CSharpCallLua]
+    public static List<Type> csharpCallLua = new List<Type>() {
+            typeof(System.Action),
+            typeof(ET.Luabehaviour.LuaAction),
+        };
 
 }
