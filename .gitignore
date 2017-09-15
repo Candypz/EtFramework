@@ -3,5 +3,9 @@ Library
 Temp
 *.obj
 *.tlog
+*.csproj
+*.sln
 Assets/Resources/Lua
 Assets/Resources/Lua.meta
+Assets/XLua/Gen/Gen.meta
+Assets/XLua/Gen
