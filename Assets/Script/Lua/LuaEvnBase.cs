@@ -14,7 +14,7 @@ namespace ET {
 
         private LuaEvnBase() {
             m_luaEnv = new LuaEnv();
-            m_luaEnv.DoString("package.path = package.path..';Assets/Resources/Lua/?.lua.bytes;Assets/Lua/?.lua'");
+            m_luaEnv.DoString("package.path = package.path..';" + Application.dataPath + "/Resources/Lua/?.lua.bytes;" + Application.dataPath + "/Lua/?.lua'");
             m_luaEnv.DoString("require 'init'");
         }
 
