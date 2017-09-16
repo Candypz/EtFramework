@@ -7,5 +7,7 @@ Temp
 *.sln
 Assets/Resources/Lua
 Assets/Resources/Lua.meta
-Assets/XLua/Gen/Gen.meta
+Assets/XLua/Gen.meta
 Assets/XLua/Gen
+Assets/AssetBundles
+Assets/AssetBundles.meta
