@@ -103,11 +103,3 @@ function string.formatnumberthousands(num)
     end
     return formatted
 end
-
-class = {}
-function class:new(oo)
-    local o = oo or {}
-    setmetatable(o, self)
-    self.__index = self
-    return o
-end

@@ -1,5 +1,3 @@
-local _proFiler = require 'perf.profiler'
-
 local view = {}
 
 function view:start()
