@@ -23,6 +23,15 @@ namespace ET {
 #endif
             return null;
         }
+
+        public static string removeExtension(string path) {
+            string filename = path;
+            int minPos = path.LastIndexOf('/');
+            int maxPos = path.LastIndexOf('.');
+            if (maxPos > minPos)
+                filename = path.Remove(maxPos);
+            return filename;
+        }
     }
 }
 
