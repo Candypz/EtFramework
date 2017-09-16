@@ -17,7 +17,7 @@ public static class LuaSetting {
 
     [CSharpCallLua]
     public static List<Type> csharpCallLua = new List<Type>() {
-            typeof(System.Action),
+            typeof(Action),
             typeof(ET.Luabehaviour.LuaAction),
         };
 
