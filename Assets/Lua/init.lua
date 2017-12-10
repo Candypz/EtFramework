@@ -1,3 +1,5 @@
+ET = CS.ET
+
 function string.htmlspecialchars(input)
     for k, v in pairs(string._htmlspecialchars_set) do
         input = string.gsub(input, k, v)

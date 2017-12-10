@@ -14,7 +14,7 @@ namespace ET {
         private LuaAction m_luaUpdate;
         private LuaAction m_luaOnDestroy;
 
-        public string FilePath = "view/first";
+        public string FilePath = "";
 
         private LuaTable m_luaTab;
 
