@@ -12,3 +12,5 @@ Assets/XLua/Gen
 Assets/AssetBundles
 Assets/AssetBundles.meta
 .DS_Store
+xluaTest.userprefs
+ios/
