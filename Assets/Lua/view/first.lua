@@ -1,9 +1,7 @@
 local view = {}
 
 function view:start()
-    ET.UGUIEventListen.Get(self.gameObject).onClick = function()
-        CS.UnityEngine.GameObject.Destroy(self.gameObject)
-    end
+    self.gameObject:GetComponent("Text").text = "wifi:"..ET.Utility:getSystemState().."\nBatteryLevel"..ET.Utility:getBatteryLevel().."\nBatteryState"..ET.Utility:getBatteryState()
 end
 
 function view:update()

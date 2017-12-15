@@ -32,6 +32,41 @@ namespace ET {
                 filename = path.Remove(maxPos);
             return filename;
         }
+
+        public static int getSystemState() {
+            if (Application.internetReachability == NetworkReachability.NotReachable) {
+                return 0;
+            }
+            if (Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork) {
+                return 1;
+            }
+            if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork) {
+                return 2;
+            }
+            return 0;
+        }
+
+        public static float getBatteryLevel() {
+            return SystemInfo.batteryLevel;
+        }
+
+        public static int getBatteryState() {
+            if (SystemInfo.batteryStatus == BatteryStatus.Charging) { //充电中
+                return 1;
+            }
+            else if (SystemInfo.batteryStatus == BatteryStatus.NotCharging) { //未充电
+                return 2;
+            }
+            else if(SystemInfo.batteryStatus == BatteryStatus.Full) { //满电
+                return 3;
+            }
+            else if(SystemInfo.batteryStatus == BatteryStatus.Discharging) { //放电
+                return 4;
+            }
+            else {
+                return 0;
+            }
+        }
     }
 }
 
