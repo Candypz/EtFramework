@@ -24,15 +24,48 @@ option ( UINT_ESPECIALLY "using custom ulong" OFF )
 option ( USING_LUAJIT "using luajit" OFF )
 
 find_path(XLUA_PROJECT_DIR NAMES SConstruct
-    PATHS 
+    PATHS
     ${CMAKE_SOURCE_DIR}
     NO_DEFAULT_PATH
     )
 
 MARK_AS_ADVANCED(XLUA_PROJECT_DIR)
 
+#begin pbc
+set (PBC_SRC
+    pbc/src/alloc.c
+    pbc/src/array.c
+    pbc/src/bootstrap.c
+    pbc/src/context.c
+    pbc/src/decode.c
+    pbc/src/map.c
+    pbc/src/pattern.c
+    pbc/src/proto.c
+    pbc/src/register.c
+    pbc/src/rmessage.c
+    pbc/src/stringpool.c
+    pbc/src/varint.c
+    pbc/src/wmessage.c
+)
+
 if (USING_LUAJIT)
-	
+    list(APPEND PBC_SRC pbc pbc/binding/lua/pbc-lua.c)
+else ()
+    list(APPEND PBC_SRC pbc pbc/binding/lua53/pbc-lua53.c)
+endif ()
+
+set_property(
+	SOURCE ${PBC_SRC}
+	APPEND
+	PROPERTY COMPILE_DEFINITIONS
+	LUA_LIB
+)
+list(APPEND THIRDPART_INC pbc pbc/src)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${PBC_SRC})
+#end pbc
+
+if (USING_LUAJIT)
+
     if (APPLE AND NOT IOS)
 	    include_directories(
 		  ${CMAKE_SOURCE_DIR}
@@ -41,10 +74,10 @@ if (USING_LUAJIT)
 		  ${CMAKE_CURRENT_BINARY_DIR}
 		  ${THIRDPART_INC}
 	    )
-	    set ( LUA_CORE lua-5.1.5/src/lapi.c lua-5.1.5/src/lcode.c lua-5.1.5/src/ldebug.c lua-5.1.5/src/ldo.c lua-5.1.5/src/ldump.c lua-5.1.5/src/lfunc.c 
-          lua-5.1.5/src/lgc.c lua-5.1.5/src/llex.c lua-5.1.5/src/lmem.c lua-5.1.5/src/lobject.c lua-5.1.5/src/lopcodes.c lua-5.1.5/src/lparser.c lua-5.1.5/src/lstate.c 
-          lua-5.1.5/src/lstring.c lua-5.1.5/src/ltable.c lua-5.1.5/src/ltm.c lua-5.1.5/src/lundump.c lua-5.1.5/src/lvm.c lua-5.1.5/src/lzio.c lua-5.1.5/src/lauxlib.c 
-          lua-5.1.5/src/lbaselib.c lua-5.1.5/src/ldblib.c lua-5.1.5/src/liolib.c lua-5.1.5/src/lmathlib.c lua-5.1.5/src/loslib.c lua-5.1.5/src/ltablib.c 
+	    set ( LUA_CORE lua-5.1.5/src/lapi.c lua-5.1.5/src/lcode.c lua-5.1.5/src/ldebug.c lua-5.1.5/src/ldo.c lua-5.1.5/src/ldump.c lua-5.1.5/src/lfunc.c
+          lua-5.1.5/src/lgc.c lua-5.1.5/src/llex.c lua-5.1.5/src/lmem.c lua-5.1.5/src/lobject.c lua-5.1.5/src/lopcodes.c lua-5.1.5/src/lparser.c lua-5.1.5/src/lstate.c
+          lua-5.1.5/src/lstring.c lua-5.1.5/src/ltable.c lua-5.1.5/src/ltm.c lua-5.1.5/src/lundump.c lua-5.1.5/src/lvm.c lua-5.1.5/src/lzio.c lua-5.1.5/src/lauxlib.c
+          lua-5.1.5/src/lbaselib.c lua-5.1.5/src/ldblib.c lua-5.1.5/src/liolib.c lua-5.1.5/src/lmathlib.c lua-5.1.5/src/loslib.c lua-5.1.5/src/ltablib.c
           lua-5.1.5/src/lstrlib.c lua-5.1.5/src/linit.c lua-5.1.5/src/loadlib.c)
 	else ()
 	    include_directories(
@@ -89,7 +122,7 @@ set ( LUA_SOCKET
     luasocket/select.c
     luasocket/tcp.c
     luasocket/timeout.c
-    luasocket/udp.c 
+    luasocket/udp.c
 )
 
 if ( WIN32 AND NOT CYGWIN )
@@ -173,18 +206,18 @@ set_property(
 if(UINT_ESPECIALLY)
     ADD_DEFINITIONS(-DUINT_ESPECIALLY)
 endif()
-	
+
 if ( WIN32 AND NOT CYGWIN )
     if (USING_LUAJIT)
         target_link_libraries(xlua
             ${CMAKE_SOURCE_DIR}/luajit-2.1.0b2/src/lua51.lib
             ws2_32
-            ${THIRDPART_LIB} 
+            ${THIRDPART_LIB}
         )
     else ()
         target_link_libraries(xlua
             ws2_32
-            ${THIRDPART_LIB} 
+            ${THIRDPART_LIB}
         )
     endif()
 else ( )
@@ -192,12 +225,12 @@ else ( )
 		target_link_libraries(xlua
 			${CMAKE_SOURCE_DIR}/luajit-2.1.0b2/src/libluajit.a
 			m
-            ${THIRDPART_LIB} 
+            ${THIRDPART_LIB}
 		)
     else ()
         target_link_libraries(xlua
             m
-            ${THIRDPART_LIB} 
+            ${THIRDPART_LIB}
         )
     endif()
 endif ( )

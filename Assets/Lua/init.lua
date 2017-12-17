@@ -1,5 +1,7 @@
 ET = CS.ET
 
+protobuf = require 'protobuf'
+
 function string.htmlspecialchars(input)
     for k, v in pairs(string._htmlspecialchars_set) do
         input = string.gsub(input, k, v)
