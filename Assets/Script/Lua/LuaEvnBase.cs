@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using XLua;
 
@@ -15,10 +16,27 @@ namespace ET {
         private LuaEvnBase() {
             m_luaEnv = new LuaEnv();
             m_luaEnv.AddBuildin("protobuf.c", XLua.LuaDLL.Lua.LoadProtobufC);
-#if !UNITY_EDITOR
-            m_luaEnv.DoString("package.path = package.path..';" + "Assets/Lua/?.lua'");
+#if UNITY_EDITOR
+            m_luaEnv.AddLoader((ref string filepath) => {
+                filepath = Application.dataPath + "/Lua/" + filepath.Replace('.', '/') + ".lua";
+                if (File.Exists(filepath)) {
+                    return File.ReadAllBytes(filepath);
+                }
+                else {
+                    return null;
+                }
+            });
 #else
-            m_luaEnv.DoString("package.path = package.path..';" + Application.streamingAssetsPath + "/Lua/?.lua.bytes'");
+            m_luaEnv.AddLoader((ref string filepath) => {
+                filepath = "Lua/" + filepath.Replace('.', '/') + ".lua";
+                TextAsset file = (TextAsset)Resources.Load(filepath);
+                if (file != null) {
+                    return file.bytes;
+                }
+                else {
+                    return null;
+                }
+            });
 #endif
             m_luaEnv.DoString(Utility.LoadLuaFile("init"));
         }

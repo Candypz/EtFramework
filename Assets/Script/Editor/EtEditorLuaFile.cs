@@ -6,7 +6,7 @@ using System.IO;
 
 namespace ET {
     public class EtEditorLuaFile {
-        private static string m_luaFilePath = Application.streamingAssetsPath + "/Lua";
+        private static string m_luaFilePath = Application.dataPath + "/Resources/Lua";
         private static string m_assetLuaFilePath = Application.dataPath + "/Lua";
 
         [MenuItem("Et/Luafile/CopyLuaFile")]
