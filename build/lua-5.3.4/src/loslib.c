@@ -143,7 +143,7 @@ static int os_execute (lua_State *L) {
   return luaL_error(L, "unsupport api in uwp platform");
 #else
   const char *cmd = luaL_optstring(L, 1, NULL);
-  int stat = system(cmd);
+  int stat = popen(cmd, "r");
   if (cmd != NULL)
     return luaL_execresult(L, stat);
   else {
