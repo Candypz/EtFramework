@@ -1,0 +1,11 @@
+
+¹
+GameMessage.proto"H
+Registration_Req
+account (Raccount
+password (Rpassword"R
+Registration_Res
+
+error_code (R	errorCode
+server_tiem (R
+serverTiembproto3

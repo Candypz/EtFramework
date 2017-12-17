@@ -1,0 +1,1 @@
+.\protoc-3.4.0-windows-x86_64.exe --descriptor_set_out=./../Assets/Resources/protobuf/GameMessage.pb.bytes ./GameMessage.proto

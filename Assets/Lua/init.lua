@@ -1,6 +1,7 @@
 ET = CS.ET
 
 protobuf = require 'protobuf'
+protobuf.register(CS.UnityEngine.Resources.Load('protobuf/GameMessage.pb').bytes)
 
 function string.htmlspecialchars(input)
     for k, v in pairs(string._htmlspecialchars_set) do
