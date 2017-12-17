@@ -15,7 +15,11 @@ namespace ET {
         private LuaEvnBase() {
             m_luaEnv = new LuaEnv();
             m_luaEnv.AddBuildin("protobuf.c", XLua.LuaDLL.Lua.LoadProtobufC);
-            m_luaEnv.DoString("package.path = package.path..';" + "Assets/Resources/Lua/?.lua.bytes;" + "Assets/Lua/?.lua'");
+#if UNITY_EDITOR
+            m_luaEnv.DoString("package.path = package.path..';" + "Assets/Lua/?.lua'");
+#else
+            m_luaEnv.DoString("package.path = package.path..';" + Application.dataPath + "/Resources/Lua/?.lua.bytes'");
+#endif
             m_luaEnv.DoString(Utility.LoadLuaFile("init"));
         }
 

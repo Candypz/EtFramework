@@ -1,6 +1,6 @@
 ET = CS.ET
 
-protobuf = require 'protobuf'
+protobuf = require "protobuf"
 protobuf.register(CS.UnityEngine.Resources.Load('protobuf/GameMessage.pb').bytes)
 
 function string.htmlspecialchars(input)
