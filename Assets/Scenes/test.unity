@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ccfc761681f16429ee3bb3faa4b0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ipAddress: 123.206.221.95
+  m_ipAddress: 127.0.0.1
   m_port: 12820
 --- !u!1 &1748769522
 GameObject:

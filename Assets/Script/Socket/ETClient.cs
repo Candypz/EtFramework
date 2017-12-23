@@ -7,7 +7,7 @@ namespace ET {
         public string m_ipAddress = "123.206.221.95";
         public int m_port = 12820;
 
-        private ETSocket m_socket = null;
+        private static ETSocket m_socket = null;
 
         private void Awake() {
             m_socket = new ETSocket();
@@ -19,7 +19,6 @@ namespace ET {
         IEnumerator CheckConnectState() {
             while (true) {
                 bool _conSuc = false;
-                int _count = 1;
                 while (!_conSuc) {
                     if (!m_socket.connect(m_ipAddress, m_port)) {
                         Debug.LogError("connect error");
@@ -30,9 +29,6 @@ namespace ET {
                     yield return new WaitForSeconds(1);
                 }
                 while (true) {
-                    byte[] _a = { (byte)_count };
-                    m_socket.send(_a);
-                    _count += 1;
                     if (!m_socket.isRunning()) {
                         _conSuc = false;
                         break;
@@ -45,6 +41,11 @@ namespace ET {
 
         private void OnDestroy() {
             m_socket.colse();
+            
+        }
+
+        public static ETSocket Get() {
+            return m_socket;
         }
     }
 }

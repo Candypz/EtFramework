@@ -14,6 +14,7 @@ public static class LuaSetting {
             typeof(ET.UGUIEventListen),
             typeof(ET.Luabehaviour),
             typeof(ET.Utility),
+            typeof(ET.ETClient),
     };
 
     [CSharpCallLua]
