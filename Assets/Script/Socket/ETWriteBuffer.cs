@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ET {
@@ -12,17 +13,11 @@ namespace ET {
         }
 
         public byte[] creatWriteBuffer(byte[] data) {
-            var _size = System.BitConverter.GetBytes((short)(data.Length + 8));
+            var _size = System.BitConverter.GetBytes((short)(data.Length + 4));
             var _randomId = System.BitConverter.GetBytes(ETMemoryStream.randomId);
-            for (int i = 0; i < _size.Length; ++i){
-                m_data[i] = _size[i];
-            }
-            for (int i = 0; i< _randomId.Length; ++i) {
-                m_data[i + _randomId.Length] = _randomId[i];
-            }
-            for (int i = 0; i < data.Length; ++i) {
-                m_data[i + _size.Length + _randomId.Length] = data[i];
-            }
+            Array.Copy(_size, m_data, _size.Length);
+            Array.Copy(_randomId, 0, m_data, _size.Length, _randomId.Length);
+            Array.Copy(data, 0, m_data, _size.Length + _randomId.Length, data.Length);
             return m_data;
         }
         

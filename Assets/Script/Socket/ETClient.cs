@@ -39,9 +39,12 @@ namespace ET {
             }
         }
 
+        private void Update() {
+            LuaEvnBase.GetInstance().luaEnv.Tick();
+        }
+
         private void OnDestroy() {
             m_socket.colse();
-            
         }
 
         public static ETSocket Get() {

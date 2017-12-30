@@ -30,24 +30,18 @@ namespace ET {
                 var _len = new byte[2];
                 var _serverPId = new byte[2];
                 var _headSize = _len.Length + _serverPId.Length;
-                for (int i = 0; i < _len.Length; ++i) {
-                    _len[i] = m_readData[i];
-                }
-                for (int i = 0; i < _serverPId.Length; ++i) {
-                    _serverPId[i] = m_readData[i + _len.Length];
-                }
-                var _dataSzie = System.BitConverter.ToInt16(_len, 0);
+                Array.Copy(m_readData, _len, _len.Length);
+                Array.Copy(m_readData, _len.Length, _serverPId, 0, _serverPId.Length);
+                var _dataSzie = BitConverter.ToInt16(_len, 0);
                 if (_dataSzie >= m_readPos) {
-                    if (System.BitConverter.ToInt16(_serverPId, 0) == ETMemoryStream.randomId) {
+                    if (BitConverter.ToInt16(_serverPId, 0) == ETMemoryStream.randomId) {
                         var _data = new byte[_dataSzie - _headSize];
-                        for (int i = 0; i < _dataSzie - _headSize; ++i) {
-                            _data[i] = m_readData[i + _headSize];
-                        }
+                        Array.Copy(m_readData, _headSize, _data, 0, _dataSzie - _headSize);
                         if (m_callLua != null) {
                             m_callLua(_data);
                         }
                         else {
-                            m_callLua = ET.LuaEvnBase.GetInstance().luaEnv.Global.Get<ReadCallLua>("recvCallBack");
+                            m_callLua = LuaEvnBase.GetInstance().luaEnv.Global.Get<ReadCallLua>("recvCallBack");
                             if (m_callLua != null) {
                                 m_callLua(_data);
                             }

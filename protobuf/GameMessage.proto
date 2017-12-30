@@ -2,6 +2,12 @@ syntax = "proto3";
 
 //Req 发
 //Res 收
+message Message {
+    bytes content = 1;
+    int32 cmd = 2;
+    int32 sn = 3;
+}
+
 
 //1000
 message Registration_Req {
