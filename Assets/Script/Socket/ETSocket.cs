@@ -60,17 +60,18 @@ __RETRY:
             return isRunning();
         }
 
-        public void send(byte[] data) {
+        public bool send(byte[] data) {
             if (!isRunning()) {
                 Debug.LogError("func send socket close");
-                return;
+                return false;
             }
             if(data == null) {
                 Debug.LogError("func send data null");
-                return;
+                return false;
             }
             try {
-                m_socket.Send(data);
+                m_socket.Send(ETWriteBuffer.getInstance().creatWriteBuffer(data), data.Length + 4, SocketFlags.None);
+                return true;
             }
             catch (SocketException err) {
                 if (err.ErrorCode == 10054 || err.ErrorCode == 10053) {
@@ -81,6 +82,7 @@ __RETRY:
                 }
                 m_socket.Close();
             }
+            return false;
         }
 
         public void reset() {

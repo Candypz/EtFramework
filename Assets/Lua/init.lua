@@ -1,5 +1,7 @@
 ET = CS.ET
 
+require "module.init"
+
 protobuf = require "protobuf"
 protobuf.register(CS.UnityEngine.Resources.Load('protobuf/GameMessage.pb').bytes)
 

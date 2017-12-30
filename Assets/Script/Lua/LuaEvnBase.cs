@@ -9,7 +9,6 @@ namespace ET {
 
     public class LuaEvnBase {
         private static readonly LuaEvnBase m_instance = new LuaEvnBase();
-        private static readonly object m_lock = new object();
 
         private LuaEnv m_luaEnv;
 

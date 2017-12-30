@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using XLua;
 
 namespace ET {
     public class ETReadBuffer {
@@ -7,6 +9,10 @@ namespace ET {
         private byte[] m_data = new byte[ETMemoryStream.BUFFER_MAX];
         private byte[] m_readData = new byte[ETMemoryStream.BUFFER_MAX];
         private int m_readPos = 0;
+
+        [CSharpCallLua]
+        private delegate Action ReadCallLua(byte[] data);
+        private ReadCallLua m_callLua;
 
         public byte[] data {
             get {
@@ -19,6 +25,39 @@ namespace ET {
             for (int i = 0; i < len; ++i) {
                 m_readData[_pos + i] = m_data[i];
                 m_readPos += 1;
+            }
+            if (m_readPos >= 4) {
+                var _len = new byte[2];
+                var _serverPId = new byte[2];
+                var _headSize = _len.Length + _serverPId.Length;
+                for (int i = 0; i < _len.Length; ++i) {
+                    _len[i] = m_readData[i];
+                }
+                for (int i = 0; i < _serverPId.Length; ++i) {
+                    _serverPId[i] = m_readData[i + _len.Length];
+                }
+                var _dataSzie = System.BitConverter.ToInt16(_len, 0);
+                if (_dataSzie >= m_readPos) {
+                    if (System.BitConverter.ToInt16(_serverPId, 0) == ETMemoryStream.randomId) {
+                        var _data = new byte[_dataSzie - _headSize];
+                        for (int i = 0; i < _dataSzie - _headSize; ++i) {
+                            _data[i] = m_readData[i + _headSize];
+                        }
+                        if (m_callLua != null) {
+                            m_callLua(_data);
+                        }
+                        else {
+                            m_callLua = ET.LuaEvnBase.GetInstance().luaEnv.Global.Get<ReadCallLua>("recvCallBack");
+                            if (m_callLua != null) {
+                                m_callLua(_data);
+                            }
+                        }
+                        m_readPos = 0;
+                    }
+                    else {
+                        m_readPos = 0;
+                    }
+                }
             }
         }
 

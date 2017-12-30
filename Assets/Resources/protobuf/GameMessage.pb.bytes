@@ -1,6 +1,10 @@
 
-¹
-GameMessage.proto"H
+€
+GameMessage.proto"E
+Message
+content (Rcontent
+cmd (Rcmd
+sn (Rsn"H
 Registration_Req
 account (Raccount
 password (Rpassword"R

@@ -33,9 +33,9 @@ namespace ET {
         }
 
         private static void build(UnityEditor.BuildTarget path) {
+            clear();
             var builds = new List<AssetBundleBuild>();
             builds.AddRange(getBuildList(Application.dataPath + "/Resources/"));
-            clear();
             Directory.CreateDirectory(m_outRootPath);
             BuildPipeline.BuildAssetBundles(m_outRootPath, builds.ToArray(), BuildAssetBundleOptions.None, path);
             AssetDatabase.Refresh();
