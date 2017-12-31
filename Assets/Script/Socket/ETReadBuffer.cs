@@ -11,7 +11,7 @@ namespace ET {
         private int m_readPos = 0;
 
         [CSharpCallLua]
-        private delegate Action ReadCallLua(byte[] data);
+        public delegate Action ReadCallLua(byte[] data);
         private ReadCallLua m_callLua;
 
         public byte[] data {

@@ -1,4 +1,4 @@
-local EtSocket = require "module/EtSocket"
+local EtSocket = require "module.EtSocket"
 
 local view = {}
 
@@ -8,7 +8,7 @@ function view:start()
             account = 12,
             password = "aaaa"
         }
-        local encode = protobuf.encode('Registration_Req', registration)
+        local encode = protobuf.encode('CRegistration_Req', registration)
         EtSocket.send(1, encode)
     end
 end

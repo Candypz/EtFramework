@@ -1,14 +1,14 @@
 
-€
-GameMessage.proto"E
-Message
+ƒ
+GameMessage.proto"F
+CMessage
 content (Rcontent
 cmd (Rcmd
-sn (Rsn"H
-Registration_Req
+sn (Rsn"I
+CRegistration_Req
 account (Raccount
-password (Rpassword"R
-Registration_Res
+password (Rpassword"S
+CRegistration_Res
 
 error_code (R	errorCode
 server_tiem (R
