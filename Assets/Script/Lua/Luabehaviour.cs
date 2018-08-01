@@ -8,11 +8,10 @@ using XLua;
 namespace ET {
     [CSharpCallLua]
     public class Luabehaviour : MonoBehaviour {
-        public  delegate void LuaAction(object obj);
         
-        private LuaAction m_luaStart;
-        private LuaAction m_luaUpdate;
-        private LuaAction m_luaOnDestroy;
+        private ET.CSharpCallLuaAction.LuaAction m_luaStart;
+        private ET.CSharpCallLuaAction.LuaAction m_luaUpdate;
+        private ET.CSharpCallLuaAction.LuaAction m_luaOnDestroy;
 
         public string FilePath = "";
 

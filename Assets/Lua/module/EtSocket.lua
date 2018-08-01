@@ -1,24 +1,23 @@
-local snId = 1
+local socket = ET.EtSocket()
 
-local function send(command, data)
-    local _message = {
-        content = data,
-        cmd = command,
-        sn = snId,
-    }
-    local _data = protobuf.encode('CMessage', _message)
-    if ET.ETClient:Get():send(_data) then
-        snId = snId + 1
-    end
+socket.onConnected = function(from)
+
 end
 
-function recvCallBack(data)
-    local _data = protobuf.decode('CMessage', data)
-    local _content = protobuf.decode('CRegistration_Req', _data.content)
-    print(_data.sn, _data.cmd)
-    print(_content.account, _content.password)
+socket.onError = function(from, err)
+    print("@@", err)
+end
+
+local function connect()
+    socket:init()
+    socket:getChannel():Connect()
+end
+
+local function send(mess)
+    socket:getChannel():Send(mess)
 end
 
 return {
-    send = send,
+    Send = send,
+    Connect = connect,
 }

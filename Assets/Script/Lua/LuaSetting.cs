@@ -14,13 +14,18 @@ public static class LuaSetting {
             typeof(ET.UGUIEventListen),
             typeof(ET.Luabehaviour),
             typeof(ET.Utility),
-            typeof(ET.ETClient),
+            typeof(ET.EtSocket),
     };
 
     [CSharpCallLua]
     public static List<Type> csharpCallLua = new List<Type>() {
             typeof(Action),
-            typeof(ET.Luabehaviour.LuaAction),
+            typeof(ET.CSharpCallLuaAction.LuaAction),
+            typeof(ET.CSharpCallLuaAction.ChannelAction),
+            typeof(ET.CSharpCallLuaAction.ChannelActionByte),
+            typeof(ET.CSharpCallLuaAction.ChannelActionEx),
+            typeof(ET.CSharpCallLuaAction.ChannelActionInt),
+            typeof(ET.CSharpCallLuaAction.ChannelActionObj),
         };
 
 }
